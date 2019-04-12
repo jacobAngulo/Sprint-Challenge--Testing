@@ -17,13 +17,19 @@ describe("games model", () => {
 
   describe("addGames", () => {
     it("should mutate the games array when a game is added", async () => {
-      await Games.addGame({
+      const newGame = await Games.addGame({
         title: "test",
         genre: "test",
         releaseYear: 2019
       });
       const games = await db("games");
 
+      expect(newGame).toEqual({
+        id: 1,
+        title: "test",
+        genre: "test",
+        releaseYear: 2019
+      });
       expect(games).toHaveLength(1);
     });
   });
